@@ -35,8 +35,8 @@ const VariationManager: React.FC<VariationManagerProps> = ({ product, onClose })
   });
 
   const handleAddVariation = async () => {
-    if (!newVariation.name || newVariation.price <= 0 || newVariation.quantity_mg <= 0) {
-      alert('Please fill in all fields correctly');
+    if (!newVariation.name || newVariation.price <= 0) {
+      alert('Please fill in name and price');
       return;
     }
 
@@ -84,8 +84,8 @@ const VariationManager: React.FC<VariationManagerProps> = ({ product, onClose })
   };
 
   const handleUpdateVariation = async () => {
-    if (!editingId || !editingVariation.name || editingVariation.price <= 0 || editingVariation.quantity_mg <= 0) {
-      alert('Please fill in all fields correctly');
+    if (!editingId || !editingVariation.name || editingVariation.price <= 0) {
+      alert('Please fill in name and price');
       return;
     }
 
@@ -192,7 +192,7 @@ const VariationManager: React.FC<VariationManagerProps> = ({ product, onClose })
 
                           <div>
                             <label className="block text-sm font-semibold text-gray-700 mb-2">
-                              Quantity (mg) *
+                              Quantity (mg)
                             </label>
                             <input
                               type="number"
@@ -387,7 +387,7 @@ const VariationManager: React.FC<VariationManagerProps> = ({ product, onClose })
 
                   <div>
                     <label className="block text-sm font-semibold text-gray-700 mb-2">
-                      Quantity (mg) *
+                      Quantity (mg)
                     </label>
                     <input
                       type="number"
