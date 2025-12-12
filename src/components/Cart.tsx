@@ -227,15 +227,13 @@ const Cart: React.FC<CartProps> = ({
                 </div>
               </div>
 
-              <a
-                href="https://www.facebook.com/share/17WHrmHvJc/?mibextid=wwXIfr"
-                target="_blank"
-                rel="noopener noreferrer"
+              <button
+                onClick={onCheckout}
                 className="w-full bg-gradient-to-r from-black to-gray-900 hover:from-gray-900 hover:to-black text-white py-3 md:py-4 rounded-lg font-semibold text-sm md:text-base shadow-lg hover:shadow-gold-glow transform hover:scale-105 transition-all mb-3 flex items-center justify-center gap-2 border border-gold-500/20"
               >
                 <CreditCard className="w-5 h-5" />
-                Proceed via Messenger
-              </a>
+                Proceed to Checkout
+              </button>
 
               <button
                 onClick={onContinueShopping}

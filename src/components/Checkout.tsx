@@ -27,11 +27,11 @@ const Checkout: React.FC<CheckoutProps> = ({ cartItems, totalPrice, onBack }) =>
   const [city, setCity] = useState('');
   const [state, setState] = useState('');
   const [zipCode, setZipCode] = useState('');
-  const [shippingLocation, setShippingLocation] = useState<'NCR' | 'LUZON' | 'VISAYAS_MINDANAO' | ''>('');
+  const [shippingLocation, setShippingLocation] = useState<'LUZON' | 'VISAYAS' | 'MINDANAO' | 'MAXIM' | ''>('');
 
   // Payment
   const [selectedPaymentMethod, setSelectedPaymentMethod] = useState('');
-  const [contactMethod, setContactMethod] = useState<'whatsapp' | ''>('whatsapp');
+  const [contactMethod, setContactMethod] = useState<'messenger' | ''>('messenger');
   const [notes, setNotes] = useState('');
 
   // Order message for copying
@@ -73,7 +73,7 @@ const Checkout: React.FC<CheckoutProps> = ({ cartItems, totalPrice, onBack }) =>
 
   const handlePlaceOrder = async () => {
     if (!contactMethod) {
-      alert('Please select your preferred contact method (WhatsApp).');
+      alert('Please select your preferred contact method (Messenger).');
       return;
     }
 
@@ -196,7 +196,7 @@ ${paymentMethod ? `Account: ${paymentMethod.account_number}` : ''}
 Please attach your payment screenshot when sending this message.
 
 📱 CONTACT METHOD
-WhatsApp: https://wa.me/639062349763
+Messenger: https://m.me/SlimDosePeptides
 
 📋 ORDER ID: ${orderData.id}
 
@@ -206,30 +206,35 @@ Please confirm this order. Thank you!
       // Store order message for copying
       setOrderMessage(orderDetails);
 
+      // Auto-copy to clipboard
+      try {
+        await navigator.clipboard.writeText(orderDetails);
+        setCopied(true);
+      } catch (err) {
+        console.error('Failed to auto-copy:', err);
+      }
+
       // Open contact method based on selection
-      const contactUrl = contactMethod === 'whatsapp'
-        ? `https://wa.me/639062349763?text=${encodeURIComponent(orderDetails)}`
+      const contactUrl = contactMethod === 'messenger'
+        ? 'https://www.facebook.com/people/SlimDose-Peptides/61555961135365/?mibextid=wwXIfr&rdid=2S96bsu8LM9aSsNA&share_url=https%3A%2F%2Fwww.facebook.com%2Fshare%2F17WHrmHvJc%2F%3Fmibextid%3DwwXIfr'
         : null;
 
       if (contactUrl) {
-        try {
-          const contactWindow = window.open(contactUrl, '_blank');
-
-          if (!contactWindow || contactWindow.closed || typeof contactWindow.closed === 'undefined') {
-            console.warn('⚠️ Popup blocked or contact method failed to open');
+        // Short delay to ensure clipboard write finishes and UI updates
+        setTimeout(() => {
+          try {
+            const contactWindow = window.open(contactUrl, '_blank');
+            if (!contactWindow || contactWindow.closed || typeof contactWindow.closed === 'undefined') {
+              console.warn('⚠️ Popup blocked or contact method failed to open');
+              setContactOpened(false);
+            } else {
+              setContactOpened(true);
+            }
+          } catch (error) {
+            console.error('❌ Error opening contact method:', error);
             setContactOpened(false);
-          } else {
-            setContactOpened(true);
-            setTimeout(() => {
-              if (contactWindow.closed) {
-                setContactOpened(false);
-              }
-            }, 1000);
           }
-        } catch (error) {
-          console.error('❌ Error opening contact method:', error);
-          setContactOpened(false);
-        }
+        }, 500);
       }
 
       // Show confirmation
@@ -266,8 +271,8 @@ Please confirm this order. Thank you!
   };
 
   const handleOpenContact = () => {
-    const contactUrl = contactMethod === 'whatsapp'
-      ? `https://wa.me/639062349763?text=${encodeURIComponent(orderMessage)}`
+    const contactUrl = contactMethod === 'messenger'
+      ? 'https://www.facebook.com/people/SlimDose-Peptides/61555961135365/?mibextid=wwXIfr&rdid=2S96bsu8LM9aSsNA&share_url=https%3A%2F%2Fwww.facebook.com%2Fshare%2F17WHrmHvJc%2F%3Fmibextid%3DwwXIfr'
       : null;
 
     if (contactUrl) {
@@ -288,7 +293,7 @@ Please confirm this order. Thank you!
               <Sparkles className="w-7 h-7 text-gold-600" />
             </h1>
             <p className="text-gray-600 mb-8 text-base md:text-lg leading-relaxed">
-              Copy the order message below and send it via WhatsApp along with your payment screenshot.
+              Copy the order message below and send it via Messenger along with your payment screenshot.
             </p>
 
             {/* Order Message Display */}
@@ -323,7 +328,7 @@ Please confirm this order. Thank you!
               {copied && (
                 <p className="text-green-600 text-sm mt-2 flex items-center gap-1">
                   <Check className="w-4 h-4" />
-                  Message copied to clipboard! Paste it in WhatsApp along with your payment screenshot.
+                  Message copied to clipboard! Paste it in Messenger along with your payment screenshot.
                 </p>
               )}
             </div>
@@ -335,12 +340,12 @@ Please confirm this order. Thank you!
                 className="w-full bg-gradient-to-r from-black to-gray-900 hover:from-gray-900 hover:to-black text-white py-3 md:py-4 rounded-2xl font-bold text-base md:text-lg shadow-lg hover:shadow-xl transform hover:scale-105 transition-all flex items-center justify-center gap-2 border border-gold-500/20"
               >
                 <MessageCircle className="w-5 h-5" />
-                Open WhatsApp
+                Open Messenger
               </button>
 
               {!contactOpened && (
                 <p className="text-sm text-gray-600">
-                  💡 If WhatsApp doesn't open, copy the message above and paste it manually
+                  💡 If Messenger doesn't open, copy the message above and visit our page manually
                 </p>
               )}
             </div>
@@ -365,7 +370,7 @@ Please confirm this order. Thank you!
                 </li>
                 <li className="flex items-start gap-3">
                   <span className="text-2xl">4️⃣</span>
-                  <span>Tracking numbers are sent via WhatsApp from 11 PM onwards.</span>
+                  <span>Tracking numbers are sent via Messenger from 11 PM onwards.</span>
                 </li>
               </ul>
             </div>
@@ -549,7 +554,7 @@ Please confirm this order. Thank you!
                   {shippingLocations.map((loc) => (
                     <button
                       key={loc.id}
-                      onClick={() => setShippingLocation(loc.id as 'NCR' | 'LUZON' | 'VISAYAS_MINDANAO')}
+                      onClick={() => setShippingLocation(loc.id as 'LUZON' | 'VISAYAS' | 'MINDANAO' | 'MAXIM')}
                       className={`p-3 rounded-lg border-2 transition-all ${shippingLocation === loc.id
                         ? 'border-gold-500 bg-gold-50'
                         : 'border-gray-200 hover:border-gold-300'
@@ -672,7 +677,7 @@ Please confirm this order. Thank you!
                 {shippingLocations.map((loc) => (
                   <button
                     key={loc.id}
-                    onClick={() => setShippingLocation(loc.id as 'NCR' | 'LUZON' | 'VISAYAS_MINDANAO')}
+                    onClick={() => setShippingLocation(loc.id as 'LUZON' | 'VISAYAS' | 'MINDANAO' | 'MAXIM')}
                     className={`p-4 rounded-lg border-2 transition-all flex items-center justify-between ${shippingLocation === loc.id
                       ? 'border-gold-500 bg-gold-50'
                       : 'border-gray-200 hover:border-gold-300'
@@ -762,8 +767,8 @@ Please confirm this order. Thank you!
               </h2>
               <div className="grid grid-cols-1 gap-3">
                 <button
-                  onClick={() => setContactMethod('whatsapp')}
-                  className={`p-4 rounded-lg border-2 transition-all flex items-center justify-between ${contactMethod === 'whatsapp'
+                  onClick={() => setContactMethod('messenger')}
+                  className={`p-4 rounded-lg border-2 transition-all flex items-center justify-between ${contactMethod === 'messenger'
                     ? 'border-gold-500 bg-gold-50'
                     : 'border-gray-200 hover:border-gold-300'
                     }`}
@@ -771,11 +776,11 @@ Please confirm this order. Thank you!
                   <div className="flex items-center gap-3">
                     <MessageCircle className="w-6 h-6 text-gold-600" />
                     <div className="text-left">
-                      <p className="font-semibold text-gray-900">WhatsApp</p>
-                      <p className="text-sm text-gray-500">+63 906 234 9763</p>
+                      <p className="font-semibold text-gray-900">Messenger</p>
+                      <p className="text-sm text-gray-500">SlimDose Peptides</p>
                     </div>
                   </div>
-                  {contactMethod === 'whatsapp' && (
+                  {contactMethod === 'messenger' && (
                     <div className="w-6 h-6 bg-gold-600 rounded-full flex items-center justify-center">
                       <span className="text-black text-xs font-bold">✓</span>
                     </div>
