@@ -7,57 +7,73 @@ export default {
   theme: {
     extend: {
       colors: {
-        // Minimalist SlimDose Theme
-        'theme-bg': '#FFFFFF',      // White
-        'theme-text': '#1A1A1A',    // Soft Black
-        'theme-accent': '#1A1A1A',  // Black for primary actions
-        'theme-secondary': '#F0E6D2', // Beige
+        // Magenta-led SlimDose Brand Theme
+        'theme-bg': '#FFFFFF',        // Pure white background
+        'theme-text': '#111111',      // Charcoal black (headings)
+        'theme-accent': '#E91E63',    // Primary Magenta (hero color)
+        'theme-accent-hover': '#FF4F9A', // Neon pink for hover
+        'theme-secondary': '#F4F4F6', // Soft gray (UI backgrounds)
+        'text-secondary': '#4A4A4A',  // Cool dark gray (body text)
 
-        // Mapping standard colors to the new theme for compatibility
+        // Magenta scale (primary brand color)
+        magenta: {
+          50: '#FCE4EC',
+          100: '#F8BBD9',
+          200: '#F48FB1',
+          300: '#F06292',
+          400: '#EC407A',
+          500: '#E91E63', // Primary magenta
+          600: '#D81B60',
+          700: '#C2185B',
+          800: '#AD1457',
+          900: '#880E4F',
+        },
+        // Primary scale mapped to magenta for compatibility
         primary: {
-          50: '#FFFFFF',
-          100: '#F9F9F9',
-          200: '#F0E6D2', // Beige
-          300: '#E0D0B0',
-          400: '#C0B090',
-          500: '#1A1A1A', // Dark
-          600: '#151515',
-          700: '#101010',
-          800: '#0A0A0A',
-          900: '#000000',
+          50: '#FCE4EC',
+          100: '#F8BBD9',
+          200: '#F48FB1',
+          300: '#F06292',
+          400: '#EC407A',
+          500: '#E91E63',
+          600: '#D81B60',
+          700: '#C2185B',
+          800: '#AD1457',
+          900: '#880E4F',
         },
-        // Deprecating gold but mapping to secondary/accent to prevent breaks
-        gold: {
-          50: '#FBF8F1',
-          100: '#F7F1E3',
-          200: '#EBDCB9',
-          300: '#DFC790',
-          400: '#D4AF37', // Classic Metallic Gold
-          500: '#B89628',
-          600: '#A08020',
-          700: '#806018',
-          800: '#604812',
-          900: '#40300C',
-        },
+        // Accent colors
         accent: {
-          light: '#F0E6D2', // Beige
-          DEFAULT: '#00008B', // Dark Blue
-          dark: '#000066',
-          white: '#ffffff',
-          black: '#1A1A1A',
-          navy: '#00008B', // Dark Blue
+          light: '#FF4F9A',   // Neon pink
+          DEFAULT: '#E91E63', // Magenta
+          dark: '#C2185B',
+          white: '#FFFFFF',
+          black: '#111111',
         },
+        // Teal for biotech credibility (optional contrast)
+        teal: {
+          50: '#E0F7F5',
+          100: '#B2EBE5',
+          200: '#80DED3',
+          300: '#4DD0C1',
+          400: '#26C6B3',
+          500: '#00B3A4', // Main teal
+          600: '#00A396',
+          700: '#009085',
+          800: '#007D73',
+          900: '#005C55',
+        },
+        // Navy kept for backward compatibility, mapped to magenta tones
         navy: {
-          50: '#e6e6f5',
-          100: '#cccceb',
-          200: '#9999d6',
-          300: '#6666c2',
-          400: '#3333ad',
-          500: '#0000a0',
-          600: '#000099',
-          700: '#00008B', // Dark Blue (main)
-          800: '#000070',
-          900: '#000055', // Darkest
+          50: '#FCE4EC',
+          100: '#F8BBD9',
+          200: '#F48FB1',
+          300: '#F06292',
+          400: '#EC407A',
+          500: '#E91E63',
+          600: '#D81B60',
+          700: '#C2185B',
+          800: '#AD1457',
+          900: '#880E4F',
         },
       },
       fontFamily: {

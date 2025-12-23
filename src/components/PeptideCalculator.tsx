@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { Calculator, RotateCcw, Syringe, Droplets, FlaskConical, AlertTriangle } from 'lucide-react';
+import { Calculator, RotateCcw, Syringe, Droplets, FlaskConical, AlertTriangle, ArrowLeft } from 'lucide-react';
 import Header from './Header';
 import Footer from './Footer';
 import { useCart } from '../hooks/useCart';
@@ -86,6 +86,15 @@ const PeptideCalculator: React.FC = () => {
 
             <main className="flex-grow container mx-auto px-4 py-8 md:py-12">
                 <div className="max-w-3xl mx-auto">
+                    {/* Back Button */}
+                    <a
+                        href="/"
+                        className="inline-flex items-center gap-2 text-gray-600 hover:text-navy-900 mb-6 group"
+                    >
+                        <ArrowLeft className="w-5 h-5 group-hover:-translate-x-1 transition-transform" />
+                        <span className="font-medium">Back to Shop</span>
+                    </a>
+
                     {/* Header Section */}
                     <div className="text-center mb-10">
                         <div className="inline-flex items-center justify-center p-3 bg-navy-50 rounded-full mb-4">

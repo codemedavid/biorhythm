@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { useCOAPageSetting } from '../hooks/useCOAPageSetting';
-import { ShoppingCart, Menu, X, MessageCircle, Calculator, FileText, HelpCircle, Truck, BookOpen } from 'lucide-react';
+import { ShoppingCart, Menu, X, MessageCircle, Calculator, FileText, HelpCircle, Truck } from 'lucide-react';
 
 interface HeaderProps {
   cartItemsCount: number;
@@ -26,14 +26,14 @@ const Header: React.FC<HeaderProps> = ({ cartItemsCount, onCartClick, onMenuClic
                 <div className="w-10 h-10 sm:w-12 sm:h-12 rounded-full overflow-hidden border border-gray-200">
                   <img
                     src="/assets/logo.jpeg"
-                    alt="SlimDose Peptides"
+                    alt="Peptide Pulse"
                     className="w-full h-full object-cover"
                   />
                 </div>
               </div>
               <div className="text-left min-w-0 flex-1">
                 <h1 className="text-lg sm:text-xl font-bold text-theme-text leading-tight whitespace-nowrap overflow-hidden text-ellipsis tracking-tight">
-                  SlimDose Peptides
+                  Peptide Pulse
                 </h1>
                 <p className="text-xs text-gray-500 font-medium flex items-center gap-1">
                   <span className="whitespace-nowrap overflow-hidden text-ellipsis">
@@ -84,13 +84,6 @@ const Header: React.FC<HeaderProps> = ({ cartItemsCount, onCartClick, onMenuClic
                   FAQ
                 </a>
                 <a
-                  href="/peptalk"
-                  className="text-sm font-medium text-gray-600 hover:text-theme-accent transition-colors flex items-center gap-1"
-                >
-                  <BookOpen className="w-4 h-4" />
-                  Peptalk
-                </a>
-                <a
                   href="https://t.me/+kdn_GOqZXxI1Y2Jl"
                   target="_blank"
                   rel="noopener noreferrer"
@@ -108,8 +101,8 @@ const Header: React.FC<HeaderProps> = ({ cartItemsCount, onCartClick, onMenuClic
               >
                 <ShoppingCart className="w-6 h-6" />
                 {cartItemsCount > 0 && (
-                  <span className="absolute top-0 right-0 bg-theme-secondary text-white text-[10px] font-bold rounded-full w-4 h-4 flex items-center justify-center">
-                    {cartItemsCount}
+                  <span className="absolute -top-1 -right-1 bg-red-500 text-white text-[11px] font-bold rounded-full min-w-[20px] h-5 flex items-center justify-center px-1 shadow-sm">
+                    {cartItemsCount > 99 ? '99+' : cartItemsCount}
                   </span>
                 )}
               </button>
@@ -208,15 +201,6 @@ const Header: React.FC<HeaderProps> = ({ cartItemsCount, onCartClick, onMenuClic
                     <HelpCircle className="w-5 h-5 text-gold-500" />
                   </div>
                   FAQ
-                </a>
-                <a
-                  href="/peptalk"
-                  className="flex items-center gap-3 p-3 rounded-xl text-left font-medium text-base text-navy-900 hover:bg-navy-50 hover:text-navy-900 transition-all group"
-                >
-                  <div className="p-2 rounded-lg bg-navy-50 group-hover:bg-white group-hover:shadow-sm border border-transparent group-hover:border-navy-600 transition-all">
-                    <BookOpen className="w-5 h-5 text-gold-500" />
-                  </div>
-                  Peptalk
                 </a>
                 <a
                   href="https://t.me/+kdn_GOqZXxI1Y2Jl"

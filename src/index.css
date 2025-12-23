@@ -5,22 +5,23 @@
 @tailwind utilities;
 
 :root {
-  /* Minimalist SlimDose Theme */
+  /* Magenta-led Peptide Pulse Brand Theme */
   --theme-bg: #FFFFFF;
-  --theme-text: #1A1A1A;
-  --theme-accent: #1A1A1A;
-  --theme-secondary: #F0E6D2;
+  --theme-text: #111111;
+  --theme-accent: #E91E63;
+  --theme-accent-hover: #FF4F9A;
+  --theme-secondary: #F4F4F6;
+  --text-secondary: #4A4A4A;
 
-  --primary-black: #1A1A1A;
+  --primary-magenta: #E91E63;
   --primary-white: #ffffff;
 
   --gray-50: #FFFFFF;
   --gray-100: #F9F9F9;
-  --gray-200: #F0E6D2;
-  /* Beige tint */
+  --gray-200: #F4F4F6;
   --gray-300: #E5E5E5;
   --gray-500: #888888;
-  --gray-900: #1A1A1A;
+  --gray-900: #111111;
 }
 
 * {
@@ -49,22 +50,22 @@ h6 {
   letter-spacing: -0.02em;
 }
 
-/* Minimalist Button Styles */
+/* Magenta Brand Button Styles */
 .btn-primary {
-  @apply bg-navy-900 text-white px-8 py-3 rounded-lg font-medium hover:bg-navy-800 transition-colors shadow-lg hover:shadow-xl transform hover:-translate-y-0.5;
+  @apply bg-magenta-500 text-white px-8 py-3 rounded-lg font-medium hover:bg-magenta-400 transition-all duration-200 shadow-lg hover:shadow-xl transform hover:-translate-y-0.5;
 }
 
 .btn-secondary {
-  @apply bg-transparent text-theme-text border border-theme-text px-6 py-3 rounded-md font-medium transition-all duration-200 hover:bg-theme-text hover:text-white active:scale-95;
+  @apply bg-transparent text-theme-text border border-theme-text px-6 py-3 rounded-md font-medium transition-all duration-200 hover:bg-magenta-500 hover:text-white hover:border-magenta-500 active:scale-95;
 }
 
 .btn-outline {
-  @apply bg-transparent text-theme-text border border-gray-300 px-4 py-2 rounded-md font-medium transition-all duration-200 hover:border-theme-accent hover:text-theme-accent;
+  @apply bg-transparent text-theme-text border border-gray-300 px-4 py-2 rounded-md font-medium transition-all duration-200 hover:border-magenta-500 hover:text-magenta-500;
 }
 
 .btn-gold {
-  /* Backward compatibility mapping to accent */
-  @apply bg-theme-secondary text-white px-6 py-3 rounded-md font-medium transition-all duration-200 hover:bg-opacity-90 active:scale-95 shadow-sm;
+  /* Backward compatibility mapping to magenta accent */
+  @apply bg-magenta-500 text-white px-6 py-3 rounded-md font-medium transition-all duration-200 hover:bg-magenta-400 active:scale-95 shadow-sm;
 }
 
 /* Minimalist Card Styles */

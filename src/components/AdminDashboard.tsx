@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { Plus, Edit, Trash2, Save, X, ArrowLeft, TrendingUp, Package, Users, FolderOpen, CreditCard, Sparkles, Layers, Shield, RefreshCw, Warehouse, ShoppingCart, HelpCircle, MapPin, Settings, Tag, BookOpen } from 'lucide-react';
+import { Plus, Edit, Trash2, Save, X, ArrowLeft, TrendingUp, Package, Users, FolderOpen, CreditCard, Sparkles, Layers, Shield, RefreshCw, Warehouse, ShoppingCart, HelpCircle, MapPin, Settings, Tag } from 'lucide-react';
 import type { Product } from '../types';
 import { useMenu } from '../hooks/useMenu';
 import { useCategories } from '../hooks/useCategories';
@@ -14,7 +14,7 @@ import FAQManager from './FAQManager';
 import ShippingManager from './ShippingManager';
 import SiteSettingsManager from './SiteSettingsManager';
 import PromoCodeManager from './PromoCodeManager';
-import GuideManager from './GuideManager';
+// GuideManager removed (Peptalk functionality disabled)
 
 const AdminDashboard: React.FC = () => {
   const [isAuthenticated, setIsAuthenticated] = useState(() => {
@@ -24,7 +24,7 @@ const AdminDashboard: React.FC = () => {
   const [loginError, setLoginError] = useState('');
   const { products, loading, addProduct, updateProduct, deleteProduct, refreshProducts } = useMenu();
   const { categories } = useCategories();
-  const [currentView, setCurrentView] = useState<'dashboard' | 'products' | 'add' | 'edit' | 'categories' | 'payments' | 'inventory' | 'orders' | 'shipping' | 'coa' | 'faq' | 'settings' | 'promo-codes' | 'guides'>('dashboard');
+  const [currentView, setCurrentView] = useState<'dashboard' | 'products' | 'add' | 'edit' | 'categories' | 'payments' | 'inventory' | 'orders' | 'shipping' | 'coa' | 'faq' | 'settings' | 'promo-codes'>('dashboard');
   const [editingProduct, setEditingProduct] = useState<Product | null>(null);
   const [isProcessing, setIsProcessing] = useState(false);
   const [managingVariationsProductId, setManagingVariationsProductId] = useState<string | null>(null);
@@ -374,7 +374,7 @@ const AdminDashboard: React.FC = () => {
             <div className="relative mx-auto w-16 h-16 rounded-full overflow-hidden mb-4 border-2 border-theme-accent/30">
               <img
                 src="/assets/logo.jpeg"
-                alt="SlimDose Peptides"
+                alt="Peptide Pulse"
                 className="w-full h-full object-cover"
               />
             </div>
@@ -1099,10 +1099,8 @@ const AdminDashboard: React.FC = () => {
     );
   }
 
-  // Smart Guides View
-  if (currentView === 'guides') {
-    return <GuideManager />;
-  }
+  // Guides view removed (Peptalk disabled)
+
 
   // Settings View
   if (currentView === 'settings') {
@@ -1151,13 +1149,13 @@ const AdminDashboard: React.FC = () => {
                 <div className="w-9 h-9 rounded-full overflow-hidden border border-navy-900/20">
                   <img
                     src="/assets/logo.jpeg"
-                    alt="SlimDose Peptides"
+                    alt="Peptide Pulse"
                     className="w-full h-full object-cover"
                   />
                 </div>
                 <div>
                   <h1 className="text-base font-bold text-theme-text">
-                    SlimDose Peptides
+                    Peptide Pulse
                   </h1>
                   <p className="text-xs text-gray-500">
                     Admin Dashboard
@@ -1345,15 +1343,7 @@ const AdminDashboard: React.FC = () => {
                   </div>
                   <span className="text-sm font-medium text-gray-900">Promo Codes</span>
                 </button>
-                <button
-                  onClick={() => setCurrentView('guides')}
-                  className="w-full flex items-center gap-3 p-2 text-left hover:bg-gray-50 rounded-lg transition-all"
-                >
-                  <div className="p-1.5 bg-purple-50 rounded-lg">
-                    <BookOpen className="h-4 w-4 text-purple-600" />
-                  </div>
-                  <span className="text-sm font-medium text-gray-900">Peptalk</span>
-                </button>
+                {/* Peptalk button removed */}
                 <button
                   onClick={() => setCurrentView('settings')}
                   className="w-full flex items-center gap-3 p-2 text-left hover:bg-gray-50 rounded-lg transition-all"

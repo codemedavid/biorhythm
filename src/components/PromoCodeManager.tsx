@@ -154,64 +154,77 @@ const PromoCodeManager: React.FC = () => {
                     </div>
                 </div>
 
-                <div className="overflow-x-auto">
-                    <table className="w-full">
-                        <thead className="bg-gray-50 text-xs text-gray-500 uppercase font-bold tracking-wider text-left">
-                            <tr>
-                                <th className="px-6 py-3">Code</th>
-                                <th className="px-6 py-3">Discount</th>
-                                <th className="px-6 py-3">Status</th>
-                                <th className="px-6 py-3">Usage</th>
-                                <th className="px-6 py-3">Expiry</th>
-                                <th className="px-6 py-3 text-right">Actions</th>
-                            </tr>
-                        </thead>
-                        <tbody className="divide-y divide-gray-100">
-                            {loading ? (
-                                <tr><td colSpan={6} className="p-8 text-center text-gray-500">Loading...</td></tr>
-                            ) : filteredCodes.length === 0 ? (
-                                <tr><td colSpan={6} className="p-8 text-center text-gray-500">No promo codes found.</td></tr>
-                            ) : (
-                                filteredCodes.map(code => (
-                                    <tr key={code.id} className="hover:bg-gray-50/50 transition-colors">
-                                        <td className="px-6 py-4 font-bold text-navy-900">{code.code}</td>
-                                        <td className="px-6 py-4">
-                                            {code.discount_type === 'percentage'
-                                                ? `${code.discount_value}% OFF`
-                                                : `₱${code.discount_value.toLocaleString()} OFF`}
-                                            {code.min_purchase_amount > 0 &&
-                                                <span className="block text-xs text-gray-400">Min: ₱{code.min_purchase_amount.toLocaleString()}</span>}
-                                        </td>
-                                        <td className="px-6 py-4">
-                                            <button
-                                                onClick={() => toggleActive(code.id, code.active)}
-                                                className={`flex items-center gap-1.5 px-2.5 py-1 rounded-full text-xs font-medium transition-colors ${code.active
-                                                        ? 'bg-green-100 text-green-700 hover:bg-green-200'
-                                                        : 'bg-gray-100 text-gray-600 hover:bg-gray-200'
-                                                    }`}>
-                                                {code.active ? <CheckCircle className="w-3 h-3" /> : <XCircle className="w-3 h-3" />}
-                                                {code.active ? 'Active' : 'Inactive'}
-                                            </button>
-                                        </td>
-                                        <td className="px-6 py-4 text-sm text-gray-600">
-                                            {code.usage_count} / {code.usage_limit || '∞'}
-                                        </td>
-                                        <td className="px-6 py-4 text-sm text-gray-600">
-                                            {code.end_date ? new Date(code.end_date).toLocaleDateString() : 'No Expiry'}
-                                        </td>
-                                        <td className="px-6 py-4 flex justify-end gap-2">
-                                            <button onClick={() => openModal(code)} className="p-2 text-blue-600 hover:bg-blue-50 rounded-lg transition-colors">
-                                                <Edit2 className="w-4 h-4" />
-                                            </button>
-                                            <button onClick={() => handleDelete(code.id)} className="p-2 text-red-600 hover:bg-red-50 rounded-lg transition-colors">
-                                                <Trash2 className="w-4 h-4" />
-                                            </button>
-                                        </td>
-                                    </tr>
-                                ))
-                            )}
-                        </tbody>
-                    </table>
+                {/* Card-based layout */}
+                <div className="p-4 space-y-4">
+                    {loading ? (
+                        <div className="p-8 text-center text-gray-500">Loading...</div>
+                    ) : filteredCodes.length === 0 ? (
+                        <div className="p-8 text-center text-gray-500">No promo codes found.</div>
+                    ) : (
+                        filteredCodes.map(code => (
+                            <div key={code.id} className="bg-gray-50 rounded-xl p-4 border border-gray-100 hover:border-gray-200 transition-colors">
+                                {/* Header Row - Code Name & Actions */}
+                                <div className="flex items-center justify-between mb-3">
+                                    <h3 className="text-lg font-bold text-teal-600">{code.code}</h3>
+                                    <div className="flex items-center gap-2">
+                                        <button
+                                            onClick={() => openModal(code)}
+                                            className="p-2 text-teal-600 hover:bg-teal-50 rounded-lg transition-colors"
+                                        >
+                                            <Edit2 className="w-4 h-4" />
+                                        </button>
+                                        <button
+                                            onClick={() => handleDelete(code.id)}
+                                            className="p-2 text-red-500 hover:bg-red-50 rounded-lg transition-colors"
+                                        >
+                                            <Trash2 className="w-4 h-4" />
+                                        </button>
+                                    </div>
+                                </div>
+
+                                {/* Discount Badge */}
+                                <div className="mb-4">
+                                    <span className="inline-block bg-teal-100 text-teal-700 px-3 py-1 rounded-full text-sm font-bold">
+                                        {code.discount_type === 'percentage'
+                                            ? `${code.discount_value}% OFF`
+                                            : `₱${code.discount_value.toLocaleString()} OFF`}
+                                    </span>
+                                    {code.min_purchase_amount > 0 && (
+                                        <span className="ml-2 text-xs text-gray-500">
+                                            Min: ₱{code.min_purchase_amount.toLocaleString()}
+                                        </span>
+                                    )}
+                                </div>
+
+                                {/* Status, Usage, Expiry Row */}
+                                <div className="grid grid-cols-3 gap-4 text-sm">
+                                    <div>
+                                        <p className="text-gray-400 text-xs uppercase font-medium mb-1">STATUS</p>
+                                        <button
+                                            onClick={() => toggleActive(code.id, code.active)}
+                                            className={`flex items-center gap-1.5 px-2.5 py-1 rounded-full text-xs font-medium transition-colors ${code.active
+                                                    ? 'bg-green-100 text-green-700 hover:bg-green-200'
+                                                    : 'bg-gray-200 text-gray-600 hover:bg-gray-300'
+                                                }`}
+                                        >
+                                            {code.active ? <CheckCircle className="w-3.5 h-3.5" /> : <XCircle className="w-3.5 h-3.5" />}
+                                            {code.active ? 'Active' : 'Inactive'}
+                                        </button>
+                                    </div>
+                                    <div>
+                                        <p className="text-gray-400 text-xs uppercase font-medium mb-1">USAGE</p>
+                                        <p className="font-semibold text-gray-700">{code.usage_count} / {code.usage_limit || '∞'}</p>
+                                    </div>
+                                    <div>
+                                        <p className="text-gray-400 text-xs uppercase font-medium mb-1">EXPIRY</p>
+                                        <p className="font-semibold text-gray-700">
+                                            {code.end_date ? new Date(code.end_date).toLocaleDateString() : 'Never'}
+                                        </p>
+                                    </div>
+                                </div>
+                            </div>
+                        ))
+                    )}
                 </div>
             </div>
 

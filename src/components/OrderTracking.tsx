@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { Search, Package, Truck, CheckCircle, Clock, AlertCircle, ArrowRight, ExternalLink } from 'lucide-react';
+import { Search, Package, Truck, CheckCircle, Clock, AlertCircle, ArrowRight, ExternalLink, ArrowLeft } from 'lucide-react';
 import { supabase } from '../lib/supabase';
 
 interface TrackingOrder {
@@ -76,6 +76,15 @@ const OrderTracking: React.FC = () => {
     return (
         <div className="min-h-screen bg-gradient-to-br from-white via-gold-50/10 to-white py-12 px-4 sm:px-6 lg:px-8">
             <div className="max-w-3xl mx-auto">
+                {/* Back Button */}
+                <a
+                    href="/"
+                    className="inline-flex items-center gap-2 text-gray-600 hover:text-navy-900 mb-6 group"
+                >
+                    <ArrowLeft className="w-5 h-5 group-hover:-translate-x-1 transition-transform" />
+                    <span className="font-medium">Back to Shop</span>
+                </a>
+
                 <div className="text-center mb-10">
                     <h1 className="text-3xl font-bold text-navy-900 mb-4">Track Your Order</h1>
                     <p className="text-gray-600">Enter your Order ID to check the current status of your package.</p>
