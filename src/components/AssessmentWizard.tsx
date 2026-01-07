@@ -105,7 +105,7 @@ const TermsAndConditions: React.FC<{ onBack: () => void }> = ({ onBack }) => {
 
                 <section>
                     <h3 className="font-bold text-theme-text mb-2">7. Contact Information</h3>
-                    <p>If you have any questions about these Terms and Conditions, please contact us at thepeptidepulse@gmail.com</p>
+                    <p>If you have any questions about these Terms and Conditions, please contact us at biorhythm.rs@gmail.com</p>
                 </section>
             </div>
 

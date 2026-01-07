@@ -325,7 +325,7 @@ ${paymentMethod ? `Account: ${paymentMethod.account_number}` : ''}
 ${paymentProofUrl ? 'Screenshot attached to order.' : 'Pending'}
 
 📱 CONTACT METHOD
-Messenger: https://m.me/PeptidePulse
+Telegram: https://t.me/slimdosedvo
 
 📋 ORDER ID: ${orderData.id}
 

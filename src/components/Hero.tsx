@@ -1,6 +1,5 @@
 import React, { useState, useEffect } from 'react';
 import { ArrowRight, ShieldCheck, Truck, Clock, Sparkles, Zap, Award } from 'lucide-react';
-import { useSiteSettings } from '../hooks/useSiteSettings';
 
 interface HeroProps {
   onShopAll: () => void;
@@ -8,16 +7,10 @@ interface HeroProps {
 
 const Hero: React.FC<HeroProps> = ({ onShopAll }) => {
   const [isVisible, setIsVisible] = useState(false);
-  const { siteSettings } = useSiteSettings();
 
   useEffect(() => {
     setIsVisible(true);
   }, []);
-
-  // Use settings or fallbacks if loading/missing
-  const badgeText = siteSettings?.hero_badge_text || 'Premium Peptide Solutions';
-  const tagline = siteSettings?.hero_tagline || 'Quality-tested products. Reliable performance. Trusted by our community.';
-  const description = siteSettings?.hero_description || 'Your all-in-one destination for high-quality peptides, peptide pens, and essential accessories for a smooth and confident wellness routine.';
 
   return (
     <div className="relative min-h-[85vh] overflow-hidden">
@@ -45,7 +38,7 @@ const Hero: React.FC<HeroProps> = ({ onShopAll }) => {
               <div className="inline-flex items-center gap-2 px-5 py-2.5 rounded-full bg-black/40 backdrop-blur-sm border border-gold-400/50 shadow-lg shadow-gold-500/20">
                 <Sparkles className="w-4 h-4 text-gold-400 animate-pulse" />
                 <span className="text-sm font-bold tracking-wide uppercase text-gold-400">
-                  {badgeText}
+                  BIORHYTHM™ Research Series
                 </span>
               </div>
             </div>
@@ -53,10 +46,10 @@ const Hero: React.FC<HeroProps> = ({ onShopAll }) => {
             {/* Main Headline */}
             <div className="text-center mb-10">
               <h1 className="text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-black tracking-tight leading-[1.1] mb-6">
-                <span className="text-gold-400 drop-shadow-lg">Your </span>
+                <span className="text-gold-400 drop-shadow-lg">Where </span>
                 <span className="relative inline-block">
                   <span className="bg-gradient-to-r from-gold-300 via-gold-400 to-gold-500 bg-clip-text text-transparent drop-shadow-lg">
-                    Peptide
+                    Science
                   </span>
                   <svg className="absolute -bottom-2 left-0 w-full" viewBox="0 0 200 12" fill="none">
                     <path d="M2 8 Q50 2 100 8 T198 8" stroke="url(#underline-gradient)" strokeWidth="4" strokeLinecap="round" />
@@ -69,11 +62,11 @@ const Hero: React.FC<HeroProps> = ({ onShopAll }) => {
                   </svg>
                 </span>
                 <br className="hidden sm:block" />
-                <span className="text-gold-400 drop-shadow-lg">Journey Starts Here</span>
+                <span className="text-gold-400 drop-shadow-lg">Meets Rhythm</span>
               </h1>
 
-              <p className="text-lg md:text-xl text-gold-200 max-w-2xl mx-auto leading-relaxed drop-shadow-md">
-                {description}
+              <p className="text-lg md:text-xl text-gold-200 max-w-3xl mx-auto leading-relaxed drop-shadow-md">
+                Precision-grade research compounds and laboratory reference materials developed for educational, analytical, and scientific study.
               </p>
             </div>
 
@@ -108,18 +101,8 @@ const Hero: React.FC<HeroProps> = ({ onShopAll }) => {
                   <ShieldCheck className="w-5 h-5" />
                 </div>
                 <div>
-                  <p className="font-bold text-gold-400 text-sm">Lab Tested</p>
-                  <p className="text-xs text-gold-200/70">99%+ Purity</p>
-                </div>
-              </div>
-
-              <div className="group flex items-center gap-3 p-4 bg-black/40 backdrop-blur-sm rounded-2xl border border-gold-400/30 shadow-sm hover:shadow-lg hover:border-gold-400/60 transition-all duration-300 hover:-translate-y-1">
-                <div className="p-2.5 bg-gradient-to-br from-magenta-500 to-magenta-600 rounded-xl text-white shadow-lg shadow-magenta-500/30 group-hover:scale-110 transition-transform">
-                  <Zap className="w-5 h-5" />
-                </div>
-                <div>
-                  <p className="font-bold text-gold-400 text-sm">Fast Acting</p>
-                  <p className="text-xs text-gold-200/70">Premium Quality</p>
+                  <p className="font-bold text-gold-400 text-sm">Formulation Integrity</p>
+                  <p className="text-xs text-gold-200/70">Consistency Guaranteed</p>
                 </div>
               </div>
 
@@ -128,8 +111,18 @@ const Hero: React.FC<HeroProps> = ({ onShopAll }) => {
                   <Award className="w-5 h-5" />
                 </div>
                 <div>
-                  <p className="font-bold text-gold-400 text-sm">Trusted</p>
-                  <p className="text-xs text-gold-200/70">By Community</p>
+                  <p className="font-bold text-gold-400 text-sm">Research-Grade</p>
+                  <p className="text-xs text-gold-200/70">Purity Standards</p>
+                </div>
+              </div>
+
+              <div className="group flex items-center gap-3 p-4 bg-black/40 backdrop-blur-sm rounded-2xl border border-gold-400/30 shadow-sm hover:shadow-lg hover:border-gold-400/60 transition-all duration-300 hover:-translate-y-1">
+                <div className="p-2.5 bg-gradient-to-br from-magenta-500 to-magenta-600 rounded-xl text-white shadow-lg shadow-magenta-500/30 group-hover:scale-110 transition-transform">
+                  <Zap className="w-5 h-5" />
+                </div>
+                <div>
+                  <p className="font-bold text-gold-400 text-sm">Lab Reference</p>
+                  <p className="text-xs text-gold-200/70">Academic Reliability</p>
                 </div>
               </div>
             </div>
@@ -143,7 +136,7 @@ const Hero: React.FC<HeroProps> = ({ onShopAll }) => {
                 <div className="absolute inset-0 bg-gradient-to-r from-white/0 via-white/30 to-white/0 translate-x-[-100%] group-hover:translate-x-[100%] transition-transform duration-700" />
                 <span className="relative flex items-center justify-center gap-3">
                   <Sparkles className="w-5 h-5" />
-                  Shop All Products
+                  Explore Products
                   <ArrowRight className="w-5 h-5 group-hover:translate-x-1 transition-transform" />
                 </span>
               </button>

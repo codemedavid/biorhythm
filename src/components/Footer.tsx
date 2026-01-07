@@ -24,15 +24,11 @@ const Footer: React.FC = () => {
             />
           </div>
 
-          {/* Contact Emails */}
-          <div className="flex flex-col sm:flex-row items-center gap-2 sm:gap-4 text-sm text-gray-500">
+          {/* Contact Email */}
+          <div className="flex items-center gap-2 text-sm text-gray-500">
             <span className="text-xs font-medium text-gray-400 uppercase">Contact Us:</span>
-            <a href="mailto:peptidewhisperer@gmail.com" className="hover:text-theme-accent transition-colors">
-              peptidewhisperer@gmail.com
-            </a>
-            <span className="hidden sm:inline text-gray-300">|</span>
-            <a href="mailto:thepeptidepulse@gmail.com" className="hover:text-theme-accent transition-colors">
-              thepeptidepulse@gmail.com
+            <a href="mailto:biorhythm.rs@gmail.com" className="hover:text-theme-accent transition-colors">
+              biorhythm.rs@gmail.com
             </a>
           </div>
 
@@ -106,12 +102,23 @@ const Footer: React.FC = () => {
 
         </div>
 
+        {/* Research Disclaimer */}
+        <div className="border-t border-gray-100 pt-6 pb-4">
+          <div className="max-w-2xl mx-auto text-center">
+            <p className="text-xs text-gray-500 leading-relaxed">
+              <span className="font-semibold text-gray-600">⚠️ For Research & Educational Reference Only.</span>
+              <br />
+              Not intended for human use, medical application, diagnosis, or treatment.
+            </p>
+          </div>
+        </div>
+
         {/* Footer Bottom */}
         <div className="border-t border-gray-100 pt-6 text-center">
           <p className="text-xs text-gray-400 flex items-center justify-center gap-1">
             Made with
             <Heart className="w-3 h-3 text-theme-secondary fill-theme-secondary" />
-            © {currentYear} Biorhythm.
+            © {currentYear} Biorhythm Research Series.
           </p>
         </div>
       </div>
